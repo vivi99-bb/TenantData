@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ArrendadorController;
+use App\Http\Controllers\ArrendatarioController;
+
+
 
 Route::get('/login', [CustomAuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [CustomAuthController::class, 'login'])->name('login.custom');
@@ -40,7 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ver-arrendatarios', [ArrendadorController::class, 'verArrendatarios'])->name('arrendador.verArrendatarios');
     Route::get('/mi-perfil', [ArrendadorController::class, 'miPerfil'])->name('arrendador.miPerfil');
     Route::get('/editar-perfil', [ArrendadorController::class, 'editarPerfil'])->name('arrendador.editarPerfil');
-    Route::get('/buscar', [ArrendadorController::class, 'buscar'])->name('arrendador.buscar');
+    
 
   
     Route::get('/arrendador/propiedades', [ArrendadorController::class, 'index'])->name('arrendador.index');
@@ -64,6 +67,10 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/arrendador/actualizar-arrendatario/{id}', [ArrendadorController::class, 'actualizarArrendatario'])->name('arrendador.actualizarArrendatario');
     Route::delete('/arrendador/eliminar-arrendatario/{id}', [ArrendadorController::class, 'eliminarArrendatario'])->name('arrendador.eliminarArrendatario');
     
+
+   
+    Route::get('/buscar', [ArrendatarioController::class, 'evaluarInquilino'])->name('buscarInquilino');
+    Route::get('/generar-pdf/{identificacion}', [ArrendatarioController::class, 'generarPDF'])->name('generar-pdf');
 
 
 
